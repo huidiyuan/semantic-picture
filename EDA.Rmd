@@ -1,0 +1,40 @@
+```{r load-libraries}
+library(readr)
+library(tidyverse)
+library(ggplot2)
+library(ggsignif)
+library(mlogit)
+library(conflicted)
+
+conflict_prefer("select", "dplyr")
+conflict_prefer("filter", "dplyr")
+```
+
+# EDA
+## Data Distribution
+```{r read-data}
+picDescription <- read_csv("picDescription.csv")
+```
+```{r data-distribution}
+# Distribution by picture
+## calculate how many people (unique ID) responded to each picture (unique picIndex)
+pic_distribution <- picDescription %>%
+  group_by(picIndex) %>%
+  summarise(num_people = n_distinct(ID)) %>%
+  arrange(desc(num_people))
+
+## max and min number of people per picture
+max_people <- max(pic_distribution$num_people)
+min_people <- min(pic_distribution$num_people)
+c(max_people, min_people)
+
+# Distribution of unique answer (input) per picture
+input_distribution <- picDescription %>%
+  group_by(picIndex) %>%
+  summarise(num_unique_input = n_distinct(input),
+            num_all_input = n()) %>%
+  arrange(desc(num_unique_input))
+
+
+```
+
