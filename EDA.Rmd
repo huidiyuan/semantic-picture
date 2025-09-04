@@ -13,7 +13,7 @@ conflict_prefer("filter", "dplyr")
 # EDA
 ## Data Distribution
 ```{r read-data}
-picDescription <- read_csv("picDescription.csv")
+picDescription <- read_csv("z-local_data/picDescription.csv")
 ```
 ```{r data-distribution}
 # Distribution by picture
@@ -38,3 +38,7 @@ input_distribution <- picDescription %>%
 
 ```
 
+```{r}
+
+install.packages(c("languageserver", "httpgd"))
+```

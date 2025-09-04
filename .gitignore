@@ -10,6 +10,7 @@
 
 # VS Code
 *.code-workspace
+.vscode/
 
 # Python
 __pycache__/
